@@ -3,35 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopee Search Tool</title>
+    <title>Tìm kiếm sản phẩm Áp Voucher Tết</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
             margin: 50px;
+            background-color: #f7f7f7;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            margin-right: 10px;
         }
 
         input {
             padding: 10px;
             font-size: 16px;
+            width: 200px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
         button {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .join-group, .tag-video-tool {
+            margin-top: 20px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Shopee Search Tool</h1>
+    <h1>Tìm kiếm sản phẩm Áp Voucher Tết</h1>
 
-    <form id="searchForm">
+    <form id="searchForm" onsubmit="performSearch(); return false;">
         <label for="shopeeKeyword">Nhập từ khóa tìm kiếm:</label>
         <input type="text" id="shopeeKeyword" name="shopeeKeyword" required>
         <button type="button" onclick="performSearch()">Tìm kiếm</button>
     </form>
+
+    <div class="tag-video-tool">
+        <button onclick="openTagVideoTool()">Tool Gắn tagVideo tự động</button>
+    </div>
+
+    <div class="join-group">
+        Tham gia Group Facebook: <a href="https://www.facebook.com/groups/gantagshopee" target="_blank">Gắn Tag Live Shopee - Tag Video Shopee - MGG Bí Mật</a>
+    </div>
 
     <script>
         function performSearch() {
@@ -42,6 +77,10 @@
             } else {
                 alert("Vui lòng nhập từ khóa tìm kiếm.");
             }
+        }
+
+        function openTagVideoTool() {
+            window.open("https://bom.so/ToolShopeeVideo", "_blank");
         }
     </script>
 
