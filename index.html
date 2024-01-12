@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopee Search Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Shopee Search Tool</h1>
+
+    <form id="searchForm">
+        <label for="shopeeKeyword">Nhập từ khóa tìm kiếm:</label>
+        <input type="text" id="shopeeKeyword" name="shopeeKeyword" required>
+        <button type="button" onclick="performSearch()">Tìm kiếm</button>
+    </form>
+
+    <script>
+        function performSearch() {
+            var keyword = document.getElementById("shopeeKeyword").value;
+            if (keyword.trim() !== "") {
+                var shopeeLink = "https://shopee.vn/search?keyword=" + encodeURIComponent(keyword) + "&promotionId=801076815446016";
+                window.open(shopeeLink, "_blank");
+            } else {
+                alert("Vui lòng nhập từ khóa tìm kiếm.");
+            }
+        }
+    </script>
+
+</body>
+</html>
