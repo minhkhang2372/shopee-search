@@ -71,9 +71,10 @@
         }
     </style>
 </head>
+
 <body>
 
-    <!-- Add a modal overlay and content -->
+    <!-- Modal overlay and content -->
     <div class="modal-overlay" id="instructionModal">
         <div class="modal-content">
             <p>HDSD: Tìm kiếm sản phẩm áp Voucher --> Copy Link Phẩm --> Gửi Mail và Link vào Tool<br>
@@ -82,6 +83,7 @@
         </div>
     </div>
 
+    <!-- Main content -->
     <h1>Tìm kiếm sản phẩm Áp Voucher Tết</h1>
 
     <form id="searchForm" onsubmit="performSearch(); return false;">
@@ -98,28 +100,32 @@
         Tham gia Group Facebook: <a href="https://www.facebook.com/groups/gantagshopee" target="_blank">Gắn Tag Live Shopee - Tag Video Shopee - MGG Bí Mật</a>
     </div>
 
+    <!-- JavaScript code -->
     <script>
-        // Function to show the modal
         function showInstructionModal() {
             document.getElementById("instructionModal").style.display = "flex";
         }
 
-        // Function to hide the modal and start usage
         function startUsage() {
             document.getElementById("instructionModal").style.display = "none";
             // Additional logic to handle what happens when the user clicks "OK"
         }
 
-        // Show the modal when the page is loaded
         window.onload = showInstructionModal;
 
-        // Your existing JavaScript code goes here
         function performSearch() {
             var keyword = document.getElementById("shopeeKeyword").value;
             if (keyword.trim() !== "") {
-                // Thay đổi đường link để áp dụng voucher của bạn
+                // Replace with your actual voucher link
                 var voucherLink = "https://shopee.vn/search?keyword=" + encodeURIComponent(keyword) + "&promotionId=801076815446016";
-                window.open(voucherLink, "_blank");
+
+                // Try to open Shopee app with the voucher link
+                window.location.href = "shopee://product/" + encodeURIComponent(voucherLink);
+                
+                // If the Shopee app is not installed, open in the browser after a short delay
+                setTimeout(function () {
+                    window.location.href = voucherLink;
+                }, 500);
             } else {
                 alert("Vui lòng nhập từ khóa tìm kiếm.");
             }
@@ -132,3 +138,4 @@
 
 </body>
 </html>
+
