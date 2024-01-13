@@ -18,6 +18,10 @@
 
         form {
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* Dòng này là sự thêm vào để dòng mới được tạo khi không đủ không gian */
         }
 
         label {
@@ -69,21 +73,27 @@
             border-radius: 5px;
             text-align: center;
         }
+
+        @media only screen and (max-width: 600px) {
+            /* Kiểu dáng cho màn hình có chiều rộng tối đa 600px (điện thoại di động) */
+            input, button {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
     </style>
 </head>
-
 <body>
 
-    <!-- Modal overlay and content -->
+    <!-- Add a modal overlay and content -->
     <div class="modal-overlay" id="instructionModal">
         <div class="modal-content">
             <p>HDSD: Tìm kiếm sản phẩm áp Voucher --> Copy Link Phẩm --> Gửi Mail và Link vào Tool<br>
-            Note: Thường Shop có sản phẩm áp được Voucher thì các sản phẩm "Bán chạy" trong Shop đó sẽ có tỉ lệ áp được cao hơn, nên có thể check các sản phẩm khác trong Shop nữa nhé !</p>
+            Note: Thường Shop có sản phẩm áp được Voucher thì các sản phẩm "Bán chạy" trong Shop đó sẽ có tỉ lệ áp được cao hơn, nên có thể check các sản phẩm khác trong Shop nữe nhé !</p>
             <button onclick="startUsage()">OK</button>
         </div>
     </div>
 
-    <!-- Main content -->
     <h1>Tìm kiếm sản phẩm Áp Voucher Tết</h1>
 
     <form id="searchForm" onsubmit="performSearch(); return false;">
@@ -100,32 +110,27 @@
         Tham gia Group Facebook: <a href="https://www.facebook.com/groups/gantagshopee" target="_blank">Gắn Tag Live Shopee - Tag Video Shopee - MGG Bí Mật</a>
     </div>
 
-    <!-- JavaScript code -->
     <script>
+        // Function to show the modal
         function showInstructionModal() {
             document.getElementById("instructionModal").style.display = "flex";
         }
 
+        // Function to hide the modal and start usage
         function startUsage() {
             document.getElementById("instructionModal").style.display = "none";
             // Additional logic to handle what happens when the user clicks "OK"
         }
 
+        // Show the modal when the page is loaded
         window.onload = showInstructionModal;
 
+        // Your existing JavaScript code goes here
         function performSearch() {
             var keyword = document.getElementById("shopeeKeyword").value;
             if (keyword.trim() !== "") {
-                // Replace with your actual voucher link
-                var voucherLink = "https://shopee.vn/search?keyword=" + encodeURIComponent(keyword) + "&promotionId=801076815446016";
-
-                // Try to open Shopee app with the voucher link
-                window.location.href = "shopee://product/" + encodeURIComponent(voucherLink);
-                
-                // If the Shopee app is not installed, open in the browser after a short delay
-                setTimeout(function () {
-                    window.location.href = voucherLink;
-                }, 500);
+                var shopeeLink = "https://shopee.vn/search?keyword=" + encodeURIComponent(keyword) + "&promotionId=801076815446016";
+                window.open(shopeeLink, "_blank");
             } else {
                 alert("Vui lòng nhập từ khóa tìm kiếm.");
             }
@@ -138,4 +143,3 @@
 
 </body>
 </html>
-
