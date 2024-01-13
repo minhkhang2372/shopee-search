@@ -117,8 +117,9 @@
         function performSearch() {
             var keyword = document.getElementById("shopeeKeyword").value;
             if (keyword.trim() !== "") {
-                var shopeeLink = "https://shopee.vn/search?keyword=" + encodeURIComponent(keyword) + "&promotionId=801076815446016";
-                window.open(shopeeLink, "_blank");
+                // Thay đổi đường link để áp dụng voucher của bạn
+                var voucherLink = "https://shopee.vn/search?keyword=" + encodeURIComponent(keyword) + "&promotionId=801076815446016";
+                window.open(voucherLink, "_blank");
             } else {
                 alert("Vui lòng nhập từ khóa tìm kiếm.");
             }
