@@ -8,52 +8,56 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            margin: 50px;
+            margin: 10px; /* Reduce margin for smaller screens */
             background-color: #f7f7f7;
         }
 
         h1 {
             color: #333;
+            font-size: 20px; /* Increase font size for heading */
         }
 
         form {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap; /* Dòng này là sự thêm vào để dòng mới được tạo khi không đủ không gian */
+            margin-top: 10px;
         }
 
         label {
-            font-size: 18px;
-            margin-right: 10px;
+            font-size: 14px; /* Reduce font size for labels */
+            margin-right: 5px; /* Adjust margin for labels */
         }
 
         input {
-            padding: 10px;
-            font-size: 16px;
-            width: 200px;
-            margin-right: 10px;
+            padding: 8px;
+            font-size: 12px; /* Reduce font size for input */
+            width: 80%; /* Adjust width for smaller screens */
+            margin-right: 0; /* Remove right margin for input */
             border: 1px solid #ccc;
             border-radius: 5px;
+            margin-bottom: 10px; /* Add margin at bottom for spacing */
         }
 
         button {
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 8px 16px;
+            font-size: 12px;
             cursor: pointer;
             background-color: #4caf50;
             color: #fff;
             border: none;
             border-radius: 5px;
+            margin-right: 0;
         }
 
-        .join-group, .tag-video-tool {
-            margin-top: 20px;
-            font-size: 16px;
+        #searchNote {
+            font-size: 10px; /* Font size for the search note */
+            color: #888; /* Color for the search note */
+            margin-top: 5px; /* Margin from the search input */
         }
 
-        /* Add a style for the modal overlay */
+        .tag-video-tool, .join-group {
+            margin-top: 10px;
+            font-size: 12px; /* Reduce font size for other sections */
+        }
+
         .modal-overlay {
             display: none;
             position: fixed;
@@ -66,40 +70,26 @@
             align-items: center;
         }
 
-        /* Style for the modal content */
         .modal-content {
             background: #fff;
-            padding: 20px;
+            padding: 10px;
             border-radius: 5px;
             text-align: center;
-        }
-
-        @media only screen and (max-width: 600px) {
-            /* Kiểu dáng cho màn hình có chiều rộng tối đa 600px (điện thoại di động) */
-            input, button {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Add a modal overlay and content -->
-    <div class="modal-overlay" id="instructionModal">
-        <div class="modal-content">
-            <p>HDSD: Tìm kiếm sản phẩm áp Voucher --> Copy Link Phẩm --> Gửi Mail và Link vào Tool<br>
-            Note: Thường Shop có sản phẩm áp được Voucher thì các sản phẩm "Bán chạy" trong Shop đó sẽ có tỉ lệ áp được cao hơn, nên có thể check các sản phẩm khác trong Shop nữe nhé !</p>
-            <button onclick="startUsage()">OK</button>
-        </div>
-    </div>
-
     <h1>Tìm kiếm sản phẩm Áp Voucher Tết</h1>
 
     <form id="searchForm" onsubmit="performSearch(); return false;">
         <label for="shopeeKeyword">Nhập từ khóa tìm kiếm:</label>
-        <input type="text" id="shopeeKeyword" name="shopeeKeyword" required>
+        <br>
+        <input type="text" id="shopeeKeyword" name="shopeeKeyword" required onclick="showSearchNote()">
+        <br>
+        <div id="searchNote"></div>
         <button type="button" onclick="performSearch()">Tìm kiếm</button>
+        <button type="button" onclick="viewAvailableProducts()">Xem SP có sẵn</button>
     </form>
 
     <div class="tag-video-tool">
@@ -110,22 +100,29 @@
         Tham gia Group Facebook: <a href="https://www.facebook.com/groups/gantagshopee" target="_blank">Gắn Tag Live Shopee - Tag Video Shopee - MGG Bí Mật</a>
     </div>
 
+    <div class="modal-overlay" id="instructionModal">
+        <div class="modal-content">
+            <p>HDSD: Tìm kiếm sản phẩm áp Voucher --> Copy Link Phẩm --> Gửi Mail và Link vào Tool<br>
+            Note: Thường Shop có sản phẩm áp được Voucher thì các sản phẩm "Bán chạy" trong Shop đó sẽ có tỉ lệ áp được cao hơn, nên có thể check các sản phẩm khác trong Shop nữa nhé !</p>
+            <button onclick="startUsage()">OK</button>
+        </div>
+    </div>
+
     <script>
-        // Function to show the modal
         function showInstructionModal() {
             document.getElementById("instructionModal").style.display = "flex";
         }
 
-        // Function to hide the modal and start usage
         function startUsage() {
             document.getElementById("instructionModal").style.display = "none";
-            // Additional logic to handle what happens when the user clicks "OK"
         }
 
-        // Show the modal when the page is loaded
+        function showSearchNote() {
+            document.getElementById("searchNote").innerText = "Mẹo: Bạn có thể tìm kiếm SP trực tiếp hoặc vào Shopee chọn SP muốn mua rồi gửi tên SP vào đây để Check nhé!";
+        }
+
         window.onload = showInstructionModal;
 
-        // Your existing JavaScript code goes here
         function performSearch() {
             var keyword = document.getElementById("shopeeKeyword").value;
             if (keyword.trim() !== "") {
@@ -138,6 +135,10 @@
 
         function openTagVideoTool() {
             window.open("https://bom.so/ToolShopeeVideo", "_blank");
+        }
+
+        function viewAvailableProducts() {
+            window.open("https://docs.google.com/spreadsheets/d/1Evazb60HB_WayK4cAiR3atHF5yoYhCFX7Tp24_Bc8nY/edit#gid=0", "_blank");
         }
     </script>
 
