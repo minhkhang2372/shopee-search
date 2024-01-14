@@ -8,17 +8,17 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            margin: 10px; /* Reduce margin for smaller screens */
+            margin: 5px; /* Reduce margin for smaller screens */
             background-color: #f7f7f7;
         }
 
         h1 {
             color: #333;
-            font-size: 20px; /* Increase font size for heading */
+            font-size: 18px; /* Increase font size for heading */
         }
 
         form {
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         label {
@@ -27,7 +27,7 @@
         }
 
         input {
-            padding: 8px;
+            padding: 10px;
             font-size: 12px; /* Reduce font size for input */
             width: 80%; /* Adjust width for smaller screens */
             margin-right: 0; /* Remove right margin for input */
@@ -37,7 +37,7 @@
         }
 
         button {
-            padding: 8px 16px;
+            padding: 10px 16px;
             font-size: 12px;
             cursor: pointer;
             background-color: #4caf50;
@@ -45,6 +45,23 @@
             border: none;
             border-radius: 5px;
             margin-right: 0;
+            transition: background-color 0.3s; /* Transition effect for button color */
+        }
+
+        .tag-video-tool button {
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px; /* 
+        }
+
+        .tag-video-tool button:hover {
+            background-color: #ff8f50; /* Lighter orange on hover */
         }
 
         #searchNote {
@@ -53,7 +70,7 @@
             margin-top: 5px; /* Margin from the search input */
         }
 
-        .tag-video-tool, .join-group {
+        .join-group {
             margin-top: 10px;
             font-size: 12px; /* Reduce font size for other sections */
         }
@@ -72,9 +89,47 @@
 
         .modal-content {
             background: #fff;
-            padding: 10px;
+            padding: 8px;
             border-radius: 5px;
             text-align: center;
+        }
+
+        /* Responsive design for screens below 600px width */
+        @media screen and (max-width: 600px) {
+            body {
+                margin: 5px;
+            }
+
+            h1 {
+                font-size: 18px;
+            }
+
+            form {
+                margin-top: 5px;
+            }
+
+            input {
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            button {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+
+            .tag-video-tool button {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+
+            .join-group {
+                font-size: 12px;
+            }
+
+            .modal-content {
+                padding: 8px;
+            }
         }
     </style>
 </head>
@@ -88,12 +143,13 @@
         <input type="text" id="shopeeKeyword" name="shopeeKeyword" required onclick="showSearchNote()">
         <br>
         <div id="searchNote"></div>
-        <button type="button" onclick="performSearch()">Tìm kiếm</button>
-        <button type="button" onclick="viewAvailableProducts()">Xem SP có sẵn</button>
+        <button type="button" onclick="performSearch()">🔎Tìm kiếm SP</button>
+        <button type="button" onclick="viewAvailableProducts()">Xem List SP (có sẵn)</button>
+        <button type="button" onclick="saveVoucherSVideo()">Lưu Voucher SVideo</button>
     </form>
 
     <div class="tag-video-tool">
-        <button onclick="openTagVideoTool()">Tool Gắn tagVideo tự động</button>
+        <button onclick="openTagVideoTool()"> 👉Tool Gắn tagVideo tự động👈</button>
     </div>
 
     <div class="join-group">
@@ -101,12 +157,10 @@
     </div>
 
     <div class="modal-overlay" id="instructionModal">
-      <div class="modal-content">
-    <p><strong>HDSD: Tìm kiếm SP áp Voucher --> Copy Link SP --> Gửi Mail và Link vào Tool</strong></p>
-    <p><strong>Note:</strong> Thường Shop có SP áp được Voucher thì các SP "Bán chạy" trong Shop đó cũng sẽ có tỉ lệ, nên có thể kiểm tra các SP khác trong Shop nữa nhé !</p>
-    <button onclick="startUsage()">OK</button>
-</div>
-
+        <div class="modal-content">
+            <p>HDSD: Tìm kiếm sản phẩm áp Voucher --> Copy Link Phẩm --> Gửi Mail và Link vào Tool<br>
+            Note: Thường Shop có sản phẩm áp được Voucher thì các sản phẩm "Bán chạy" trong Shop đó sẽ có tỉ lệ áp được cao hơn, nên có thể check các sản phẩm khác trong Shop nữa nhé !</p>
+            <button onclick="startUsage()">OK</button>
         </div>
     </div>
 
@@ -128,7 +182,7 @@
         function performSearch() {
             var keyword = document.getElementById("shopeeKeyword").value;
             if (keyword.trim() !== "") {
-                var shopeeLink = "https://shopee.vn/search?keyword=" + encodeURIComponent(keyword) + "&promotionId=801076815446016";
+                var shopeeLink = "https://shopee.vn/search?keyword=" + encodeURIComponent(keyword) + "&promotionId=801076831862784";
                 window.open(shopeeLink, "_blank");
             } else {
                 alert("Vui lòng nhập từ khóa tìm kiếm.");
@@ -141,6 +195,10 @@
 
         function viewAvailableProducts() {
             window.open("https://docs.google.com/spreadsheets/d/1Evazb60HB_WayK4cAiR3atHF5yoYhCFX7Tp24_Bc8nY/edit#gid=0", "_blank");
+        }
+
+        function saveVoucherSVideo() {
+            window.open("https://shope.ee/40HLLMXZb7", "_blank");
         }
     </script>
 
